@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: demo-ts-app
-        image: demo-ts-app:latest
+        image: testfoofeb2026.azurecr.io/demo-ts-app:latest
         ports:
         - containerPort: 3000
         resources:
