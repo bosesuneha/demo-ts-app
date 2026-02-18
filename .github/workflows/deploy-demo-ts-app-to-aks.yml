@@ -31,10 +31,7 @@ env:
     CONTAINER_NAME: demo-ts-app
     CLUSTER_NAME: test-1
     CLUSTER_RESOURCE_GROUP: test-foo
-    DEPLOYMENT_MANIFEST_PATH: |
-        k8s/configmap.yaml
-        k8s/service.yaml
-        k8s/deployment.yaml
+    DEPLOYMENT_MANIFEST_PATH: k8s/*.yaml
     DOCKER_FILE: Dockerfile
     BUILD_CONTEXT_PATH: .
     NAMESPACE: default

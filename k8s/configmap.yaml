@@ -4,5 +4,4 @@ metadata:
   name: demo-ts-app-config
   namespace: default
 data:
-  NODE_ENV: production
-  ENTRY_POINT: dist/index.js
+  ENTRY_POINT: "dist/index.js"
