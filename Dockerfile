@@ -12,5 +12,7 @@ RUN npm ci --only=production
 # Copy the application source code
 COPY . .
 
+
+
 # Set the default command
 CMD ["node", "index.js"]
