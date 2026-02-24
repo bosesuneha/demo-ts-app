@@ -37,7 +37,7 @@ env:
         k8s/service.yaml
     DOCKER_FILE: Dockerfile
     BUILD_CONTEXT_PATH: .
-    NAMESPACE: default
+    NAMESPACE: a-project
 
 jobs:
     buildImage:
