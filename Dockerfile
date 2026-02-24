@@ -3,16 +3,13 @@ FROM node:20-alpine
 # Set working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json
+# Copy package files and install dependencies
 COPY package.json package-lock.json ./
-
-# Install dependencies
 RUN npm ci --only=production
 
-# Copy source files
-COPY . .
-
-# Build the TypeScript code
+# Copy source files and build the application
+COPY tsconfig.json ./
+COPY src ./src
 RUN npm run build
 
 # Expose the application port
