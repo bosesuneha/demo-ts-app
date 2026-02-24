@@ -1,16 +1,19 @@
 FROM node:20-alpine
 
-# Set the working directory
+# Set working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json
-COPY package*.json ./
-
-# Install dependencies
+# Copy package files and install dependencies
+COPY package.json package-lock.json ./
 RUN npm ci --only=production
 
-# Copy the application source code
-COPY . .
+# Copy source files and build the application
+COPY tsconfig.json ./
+COPY src ./src
+RUN npm run build
 
-# Set the default command to run the application
-CMD ["node", "index.js"]
+# Expose the application port
+EXPOSE 3000
+
+# Start the application
+CMD ["node", "dist/index.js"]
