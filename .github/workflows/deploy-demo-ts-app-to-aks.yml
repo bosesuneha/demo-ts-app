@@ -94,7 +94,7 @@ jobs:
             # Retrieves your Azure Kubernetes Service cluster's kubeconfig file
             - name: Get K8s context
               run: |
-                  az aks namespace get-credentials --resource-group ${{ env.CLUSTER_RESOURCE_GROUP }} --name ${{ env.CLUSTER_NAME }}
+                  az aks namespace get-credentials --name ${{env.NAMESPACE}} --resource-group ${{ env.CLUSTER_RESOURCE_GROUP }} --cluster-name ${{ env.CLUSTER_NAME }}
 
             # Checks if the AKS cluster is private
             - name: Is private cluster
