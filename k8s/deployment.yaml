@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: demo-ts-app
-  namespace: a-project
+  namespace: wtf
   labels:
     app: demo-ts-app
 spec:
@@ -34,8 +34,8 @@ spec:
           periodSeconds: 20
         resources:
           limits:
-            memory: "512Mi"
+            memory: "256Mi"
             cpu: "500m"
           requests:
-            memory: "256Mi"
+            memory: "128Mi"
             cpu: "250m"

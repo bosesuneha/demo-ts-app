@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: demo-ts-app
-  namespace: a-project
+  namespace: wtf
   labels:
     app: demo-ts-app
 spec:
