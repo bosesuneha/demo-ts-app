@@ -91,10 +91,20 @@ jobs:
               with:
                   kubelogin-version: "v0.0.25"
 
-            # Retrieves your Azure Kubernetes Service cluster's kubeconfig file
-            - name: Get K8s context
+            - name: Get K8s context (managed namespace)
               run: |
-                  az aks namespace get-credentials --name ${{env.NAMESPACE}} --resource-group ${{ env.CLUSTER_RESOURCE_GROUP }} --cluster-name ${{ env.CLUSTER_NAME }} --file "${{ runner.temp }}/kubeconfig" --overwrite-existing
+                  az aks namespace get-credentials \
+                    --name ${{ env.NAMESPACE }} \
+                    --resource-group ${{ env.CLUSTER_RESOURCE_GROUP }} \
+                    --cluster-name ${{ env.CLUSTER_NAME }} \
+                    --file "${{ runner.temp }}/kubeconfig" \
+                    --overwrite-existing
+
+                  kubelogin convert-kubeconfig \
+                    -l azurecli \
+                    --kubeconfig "${{ runner.temp }}/kubeconfig"
+
+                  echo "KUBECONFIG=${{ runner.temp }}/kubeconfig" >> "$GITHUB_ENV"
 
             # Checks if the AKS cluster is private
             - name: Is private cluster
