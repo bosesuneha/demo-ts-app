@@ -10,7 +10,7 @@
 # 🔐 IMPORTANT: OIDC Authentication Required!
 # This workflow uses OpenID Connect (OIDC) to authenticate with Azure without storing secrets.
 # You MUST configure the following GitHub repository secrets for this workflow to work:
-#    - AZURE_CLIENT_ID     (Client ID of the managed identity or service principal) 
+#    - AZURE_CLIENT_ID     (Client ID of the managed identity or service principal)
 #    - AZURE_TENANT_ID     (Your Azure AD tenant ID)
 #    - AZURE_SUBSCRIPTION_ID (Your Azure subscription ID)
 #
@@ -94,7 +94,7 @@ jobs:
             # Retrieves your Azure Kubernetes Service cluster's kubeconfig file
             - name: Get K8s context
               run: |
-                  az aks namespace get-credentials --name ${{env.NAMESPACE}} --resource-group ${{ env.CLUSTER_RESOURCE_GROUP }} --cluster-name ${{ env.CLUSTER_NAME }}
+                  az aks namespace get-credentials --name ${{env.NAMESPACE}} --resource-group ${{ env.CLUSTER_RESOURCE_GROUP }} --cluster-name ${{ env.CLUSTER_NAME }} --file "${{ runner.temp }}/kubeconfig" --overwrite-existing
 
             # Checks if the AKS cluster is private
             - name: Is private cluster
