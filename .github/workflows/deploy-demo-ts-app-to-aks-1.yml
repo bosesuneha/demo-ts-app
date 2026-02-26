@@ -111,6 +111,8 @@ jobs:
             # Deploys application based on given manifest file
             - name: Deploys application
               uses: Azure/k8s-deploy@v5
+              env:
+                  KUBECONFIG: ${{ runner.temp }}/kubeconfig
               with:
                   action: deploy
                   manifests: ${{ env.DEPLOYMENT_MANIFEST_PATH }}
