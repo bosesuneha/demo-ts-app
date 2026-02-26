@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: demo-ts-app-config
-  namespace: new-aks-project-for-demo
-data:
-  NODE_ENV: production
