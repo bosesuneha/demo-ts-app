@@ -3,7 +3,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: demo-ts-app-config
-  namespace: test-mns
+  namespace: default
   labels:
     app.kubernetes.io/name: demo-ts-app
     app.kubernetes.io/part-of: demo-ts-app
