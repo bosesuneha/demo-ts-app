@@ -8,7 +8,7 @@ metadata:
     app.kubernetes.io/name: demo-ts-app
     app.kubernetes.io/part-of: demo-ts-app
 spec:
-  replicas: 2
+  replicas: 1
   strategy:
     type: RollingUpdate
     rollingUpdate:
