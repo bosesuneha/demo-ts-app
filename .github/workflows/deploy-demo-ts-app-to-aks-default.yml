@@ -10,7 +10,7 @@
 # 🔐 IMPORTANT: OIDC Authentication Required!
 # This workflow uses OpenID Connect (OIDC) to authenticate with Azure without storing secrets.
 # You MUST configure the following GitHub repository secrets for this workflow to work:
-#    - AZURE_CLIENT_ID     (Client ID of the managed identity or service principal) 
+#    - AZURE_CLIENT_ID     (Client ID of the managed identity or service principal)
 #    - AZURE_TENANT_ID     (Your Azure AD tenant ID)
 #    - AZURE_SUBSCRIPTION_ID (Your Azure subscription ID)
 #
@@ -18,7 +18,7 @@
 # 1. Use the AKS VS Code Extension "Setup OIDC for GitHub" command, OR
 # 2. Follow the manual setup guide: https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-azure
 #
-name: deploy-demo-ts-app-to-aks-default
+name: deploy-demo-ts-app-to-aks-test-mns
 
 on:
     push:
@@ -37,7 +37,7 @@ env:
         k8s/manifests/service.yaml
     DOCKER_FILE: Dockerfile
     BUILD_CONTEXT_PATH: .
-    NAMESPACE: default
+    NAMESPACE: test-mns
 
 jobs:
     buildImage:
@@ -110,7 +110,7 @@ jobs:
                       ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:${{ github.sha }}
                   namespace: ${{ env.NAMESPACE }}
 
-             # Annotates the namespace with workload identity metadata
+              # Annotates the namespace with workload identity metadata
             - name: Annotate namespace
               run: |
                   kubectl annotate namespace ${{ env.NAMESPACE }} \
