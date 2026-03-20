@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: demo-ts-app
-  namespace: default
+  namespace: test-mns
   labels:
     app.kubernetes.io/name: demo-ts-app
     app.kubernetes.io/part-of: demo-ts-app
