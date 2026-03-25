@@ -18,7 +18,7 @@
 # 1. Use the AKS VS Code Extension "Setup OIDC for GitHub" command, OR
 # 2. Follow the manual setup guide: https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-azure
 #
-name: deploy-demo-ts-app-to-aks-test-mns
+name: mns-workflow
 
 on:
     push:
@@ -37,7 +37,7 @@ env:
         k8s/manifests/service.yaml
     DOCKER_FILE: Dockerfile
     BUILD_CONTEXT_PATH: .
-    NAMESPACE: test-mns
+    NAMESPACE: mns-1
 
 jobs:
     buildImage:
@@ -121,10 +121,13 @@ jobs:
              # Annotates the namespace with workload identity metadata
             - name: Annotate namespace
               run: |
-                  kubectl annotate namespace ${{ env.NAMESPACE }} \
-                    aks-project/workload-identity-id="${{ secrets.AZURE_CLIENT_ID }}" \
-                    aks-project/workload-identity-tenant="${{ secrets.AZURE_TENANT_ID }}" \
-                    --overwrite
+                  az aks namespace update \
+                    --resource-group ${{ env.CLUSTER_RESOURCE_GROUP }} \
+                    --cluster-name ${{ env.CLUSTER_NAME }} \
+                    --name ${{ env.NAMESPACE }} \
+                    --annotations \
+                      aks-project/workload-identity-id="${{ secrets.AZURE_CLIENT_ID }}" \
+                      aks-project/workload-identity-tenant="${{ secrets.AZURE_TENANT_ID }}"
 
             # Annotates the deployed resources with metadata for traceability
             - name: Annotate deployment
