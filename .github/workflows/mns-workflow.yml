@@ -28,7 +28,7 @@ on:
 env:
     ACR_RESOURCE_GROUP: thgamble
     AZURE_CONTAINER_REGISTRY: dttestacr
-    CONTAINER_NAME: demo-ts-app
+    CONTAINER_NAME: demo-ts-app-1
     CLUSTER_NAME: sb-1
     CLUSTER_RESOURCE_GROUP: sunehabose-test-rg
     DEPLOYMENT_MANIFEST_PATH: |
